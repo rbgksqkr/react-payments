@@ -478,4 +478,4 @@ table {
   &:hover {
     background-color: lightgray;
   }
-`,d1=()=>{const e=tp(),n=Es().state;return S.jsx(l1,{children:n&&S.jsxs(u1,{children:[S.jsx(s1,{children:S.jsx(a1,{})}),S.jsxs(i1,{children:[n.cardNumber,"로 시작하는",S.jsx("br",{}),n.cardCompany,"가 등록되었어요."]}),S.jsx(c1,{onClick:()=>e(-1),children:"확인"})]})})},p1=()=>S.jsx(Rg,{children:S.jsxs(Ng,{children:[S.jsx(vu,{path:"/",element:S.jsx(o1,{})}),S.jsx(vu,{path:"/register",element:S.jsx(d1,{})})]})});hi.createRoot(document.getElementById("root")).render(S.jsxs(C.StrictMode,{children:[S.jsx(z0,{}),S.jsx(A0,{children:S.jsx(p1,{})})]}));
+`,d1=()=>{const e=tp(),n=Es().state;return S.jsx(l1,{children:n&&S.jsxs(u1,{children:[S.jsx(s1,{children:S.jsx(a1,{})}),S.jsxs(i1,{children:[n.cardNumber,"로 시작하는",S.jsx("br",{}),n.cardCompany,"가 등록되었어요."]}),S.jsx(c1,{onClick:()=>e(-1),children:"확인"})]})})},p1=()=>S.jsx(Rg,{children:S.jsxs(Ng,{children:[S.jsx(vu,{path:"/react-payments/",element:S.jsx(o1,{})}),S.jsx(vu,{path:"/react-payments/register",element:S.jsx(d1,{})})]})});hi.createRoot(document.getElementById("root")).render(S.jsxs(C.StrictMode,{children:[S.jsx(z0,{}),S.jsx(A0,{children:S.jsx(p1,{})})]}));
