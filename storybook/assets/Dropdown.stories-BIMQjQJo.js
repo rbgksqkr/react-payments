@@ -2,4 +2,4 @@ import{D as a}from"./Dropdown-CJ8kir_Y.js";import"./styled-components.browser.es
   args: {
     value: ''
   }
-}`,...(t=(e=o.parameters)==null?void 0:e.docs)==null?void 0:t.source}}};const d=["카드사_선택_레이아웃"];export{d as __namedExportsOrder,m as default,o as 카드사_선택_레이아웃};
+}`,...(t=(e=o.parameters)==null?void 0:e.docs)==null?void 0:t.source}}};const d=["드랍다운"];export{d as __namedExportsOrder,m as default,o as 드랍다운};
