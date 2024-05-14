@@ -1,24 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { isValidCardCompanyForm } from '../../validator/validateForm';
 import { UseSelectReturnType } from '../../types/hooks';
 import { CardType } from '../../types/card';
 
 const useCardCompanyFormStatus = (cardCompanyInfo: UseSelectReturnType<CardType>) => {
-  const isCardCompanyValid = isValidCardCompanyForm(cardCompanyInfo);
-  const [cardCompanyFormStatus, setCardCompanyFormStatus] = useState({
-    isValid: isCardCompanyValid,
-    hasOpened: false,
-  });
+  const isValid = isValidCardCompanyForm(cardCompanyInfo);
+  const hasOpened = useRef(false);
 
-  useEffect(() => {
-    setCardCompanyFormStatus(prev => ({
-      ...prev,
-      isValid: isCardCompanyValid,
-      hasOpened: isCardCompanyValid || prev.hasOpened,
-    }));
-  }, [isCardCompanyValid]);
+  if (isValid && !hasOpened.current) {
+    hasOpened.current = true;
+  }
 
-  return cardCompanyFormStatus;
+  return { isValid, hasOpened: hasOpened.current };
 };
 
 export default useCardCompanyFormStatus;

@@ -1,23 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { isValidCardNumberForm } from '../../validator/validateForm';
 import { UseCardNumberReturnType } from '../../types/hooks';
 
 const useCardNumberFormStatus = (cardNumberInfo: UseCardNumberReturnType) => {
-  const isCardNumberValid = isValidCardNumberForm(cardNumberInfo);
-  const [cardNumberFormStatus, setCardNumberFormStatus] = useState({
-    isValid: isCardNumberValid,
-    hasOpened: false,
-  });
+  const isValid = isValidCardNumberForm(cardNumberInfo);
+  const hasOpened = useRef(false);
 
-  useEffect(() => {
-    setCardNumberFormStatus(prev => ({
-      ...prev,
-      isValid: isCardNumberValid,
-      hasOpened: isCardNumberValid || prev.hasOpened,
-    }));
-  }, [isCardNumberValid]);
+  if (isValid && !hasOpened.current) {
+    hasOpened.current = true;
+  }
 
-  return cardNumberFormStatus;
+  return { isValid, hasOpened: hasOpened.current };
 };
 
 export default useCardNumberFormStatus;

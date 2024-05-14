@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { isValidExpiryDateForm } from '../../validator/validateForm';
 import { UseExpiryDateReturnType } from '../../types/hooks';
 
@@ -6,21 +6,14 @@ const useExpiryDateFormStatus = (expiryDateInfo: {
   month: UseExpiryDateReturnType;
   year: UseExpiryDateReturnType;
 }) => {
-  const isExpiryDateValid = isValidExpiryDateForm(expiryDateInfo);
-  const [expiryDateFormStatus, setExpiryDateFormStatus] = useState({
-    isValid: isExpiryDateValid,
-    hasOpened: false,
-  });
+  const isValid = isValidExpiryDateForm(expiryDateInfo);
+  const hasOpened = useRef(false);
 
-  useEffect(() => {
-    setExpiryDateFormStatus(prev => ({
-      ...prev,
-      isValid: isExpiryDateValid,
-      hasOpened: isExpiryDateValid || prev.hasOpened,
-    }));
-  }, [isExpiryDateValid]);
+  if (isValid && !hasOpened.current) {
+    hasOpened.current = true;
+  }
 
-  return expiryDateFormStatus;
+  return { isValid, hasOpened: hasOpened.current };
 };
 
 export default useExpiryDateFormStatus;

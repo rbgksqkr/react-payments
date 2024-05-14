@@ -1,23 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { isValidCVCForm } from '../../validator/validateForm';
 import { UseCVCReturnType } from '../../types/hooks';
 
 const useCVCFormStatus = (cardCVCInfo: UseCVCReturnType) => {
-  const isCardCVCValid = isValidCVCForm(cardCVCInfo);
-  const [cardCVCFormStatus, setCardCVCFormFormStatus] = useState({
-    isValid: isCardCVCValid,
-    hasOpened: false,
-  });
+  const isValid = isValidCVCForm(cardCVCInfo);
+  const hasOpened = useRef(false);
 
-  useEffect(() => {
-    setCardCVCFormFormStatus(prev => ({
-      ...prev,
-      isValid: isCardCVCValid,
-      hasOpened: isCardCVCValid || prev.hasOpened,
-    }));
-  }, [isCardCVCValid]);
+  if (isValid && !hasOpened.current) {
+    hasOpened.current = true;
+  }
 
-  return cardCVCFormStatus;
+  return { isValid, hasOpened: hasOpened.current };
 };
 
 export default useCVCFormStatus;
